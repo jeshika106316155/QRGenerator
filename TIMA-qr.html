@@ -11,7 +11,7 @@
             alert("KTP number is invalid!");
             return;
         }
-            var qrText = 'https://meal.tzuchihospital.co.id:8585/' + bedNo
+            var qrText = bedNo; //'https://meal.tzuchihospital.co.id:8585/' + 
             var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + qrText + '&amp;size=300x300';
             $('#barcode').attr('src', url);
             $('#barcode').attr('title', bedNo);
