@@ -1,0 +1,51 @@
+<html data-theme="light">
+<head>
+    <title>Seminar QR Code</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function generateBarCode() {
+            var bedNo = $('#bedNo').val();
+            if(bedNo.length!=16)
+        {
+            alert("KTP number is invalid!");
+            return;
+        }
+            var qrText = bedNo; //'https://meal.tzuchihospital.co.id:8585/' + 
+            var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + qrText + '&amp;size=300x300';
+            $('#barcode').attr('src', url);
+            $('#barcode').attr('title', bedNo);
+            $('#linkText').html(qrText);
+            $('#linkText').attr('href', qrText);
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="title is-3">Seminar Medis - QR Code</p>
+    <div>
+        <label for="bedNo">No. KTP: </label>
+        <input id="bedNo" type="number" placeholder="Input No. KTP" size="30" maxlength="16" required/>
+        <input class="button is-primary" type="button" onclick="generateBarCode()" value="Submit" />
+    </div>
+
+    <div class="box">
+        <img id='barcode' src="" alt="QR code will be displayed here..." title="" width="300" height="300" />
+    </div>
+
+    <div class="box">
+        If you have not registered please <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIR2AkyLw32suLgyOGjqd6Qe0JsQ13A6-TCNcQYkp658fdJA/viewform?usp=send_form" target="_blank">Register here!</a>
+    </div>
+
+    <!--<p>Scan the QR code above or click the link below</p>-->
+    <!--<a id="linkText"></a>-->
+</body>
+</html>
